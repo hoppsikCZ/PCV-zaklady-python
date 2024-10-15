@@ -1,3 +1,5 @@
+import unidecode
+
 # Znakové řetězce mohou být uvozeny jednoduchými i dvojitými uvozovkami
 course_name = "Python programming"
 
@@ -158,3 +160,22 @@ funkční kód, tím lepší).
 3. Vytvořte funkci, která vygeneruje náhodná hesla pro počet osob zadaný v parametru tak, aby heslo začínalo
    3 velkými písmeny, pokračovalo 3 malými písmeny, jedním speciálním znakem (-/+*) a končilo 3 náhodnými číslicemi.
 '''
+
+#1
+splited_date = input("Zadej datum v českém formátu (DD. MM. RRRR): ").split(". ")
+database_date = f"{splited_date[2]}-{splited_date[1]}-{splited_date[0]}"
+print(database_date)
+
+#2
+
+
+def create_identifiers(phrase, camel_case=False):
+    phrase = unidecode.unidecode(phrase)
+    if camel_case:
+        phrase = phrase.title().replace(" ", "")
+        return phrase[0].lower() + phrase[1:]
+    else:
+        return " ".join(phrase.split()).lower().replace(" ", "-")
+
+
+print(create_identifiers("Ahoj         sedm je cislo"))
