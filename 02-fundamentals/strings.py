@@ -1,5 +1,6 @@
 import unidecode
-
+import random
+import string
 # Znakové řetězce mohou být uvozeny jednoduchými i dvojitými uvozovkami
 course_name = "Python programming"
 
@@ -170,6 +171,9 @@ print(database_date)
 
 
 def create_identifiers(phrase, camel_case=False):
+    """
+        Převede zadanou frázi na identifikátor v Pythonu nebo camelCase.
+    """
     phrase = unidecode.unidecode(phrase)
     if camel_case:
         phrase = phrase.title().replace(" ", "")
@@ -179,3 +183,23 @@ def create_identifiers(phrase, camel_case=False):
 
 
 print(create_identifiers("Ahoj         sedm je cislo"))
+print(create_identifiers("Ahoj         sedm je cislo", True))
+
+#3
+
+def generate_passwords(count):
+    passwords = []
+    special_chars = "-/+*"
+
+    for _ in range(count):
+        upper = ''.join(random.choices(string.ascii_uppercase, k=3))
+        lower = ''.join(random.choices(string.ascii_lowercase, k=3))
+        special = random.choice(special_chars)
+        digits = ''.join(random.choices(string.digits, k=3))
+        password = upper + lower + special + digits
+        passwords.append(password)
+
+    return passwords
+
+input = int(input("Zadej počet hesel: "))
+print(' '.join(generate_passwords(input)))
